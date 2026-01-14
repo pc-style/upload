@@ -1,24 +1,35 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
+import { usePerformanceMode } from '../../hooks/usePerformanceMode';
 
 const useMousePosition = () => {
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
+    const isLowPerformance = usePerformanceMode();
+
     useEffect(() => {
+        if (isLowPerformance) return;
         const handle = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
         window.addEventListener('mousemove', handle);
         return () => window.removeEventListener('mousemove', handle);
-    }, []);
+    }, [isLowPerformance]);
+
+    if (isLowPerformance) return { x: 0, y: 0 };
     return mouse;
 };
 
 export const NeuralCursor = () => {
     const mouse = useMousePosition();
     const [delayedMouse, setDelayedMouse] = useState({ x: 0, y: 0 });
+    const isLowPerformance = usePerformanceMode();
 
     useEffect(() => {
+        if (isLowPerformance) return;
         const timeout = setTimeout(() => setDelayedMouse(mouse), 50);
         return () => clearTimeout(timeout);
-    }, [mouse]);
+    }, [mouse, isLowPerformance]);
+
+    if (isLowPerformance) return null;
 
     return (
         <div className="hidden lg:block pointer-events-none fixed inset-0 z-[500]">
