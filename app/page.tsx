@@ -1,11 +1,7 @@
 import { CyberUploadZone } from "@/components/CyberUploadZone";
-import { Upload, Zap, Shield, Clock, LogIn, LogOut, User as UserIcon, Loader2 } from "lucide-react";
-import { useUser } from "@/hooks/useUser";
-import Image from "next/image";
+import { Upload, Zap, Shield, Clock } from "lucide-react";
 
 export default function Home() {
-  const { user, isLoading, login, logout } = useUser();
-
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Header */}
@@ -25,60 +21,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-6 text-xs text-gray-500 font-mono uppercase tracking-wider border-r border-[#ff00ff]/10 pr-6 mr-6">
-              <span className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                SYSTEM_ONLINE
-              </span>
-              <span>v1.0.0</span>
-            </div>
-
-            {/* Auth UI */}
-            <div className="flex items-center gap-4">
-              {isLoading ? (
-                <div className="p-2">
-                  <Loader2 className="w-4 h-4 text-[#ff00ff] animate-spin" />
-                </div>
-              ) : user ? (
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-3 px-3 py-1.5 bg-[#ff00ff]/5 border border-[#ff00ff]/20 rounded-lg">
-                    {user.profilePictureUrl ? (
-                      <div className="relative w-6 h-6 rounded-md overflow-hidden border border-[#ff00ff]/30">
-                        <Image
-                          src={user.profilePictureUrl}
-                          alt={user.firstName || "User"}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-6 h-6 rounded-md bg-[#ff00ff]/20 flex items-center justify-center">
-                        <UserIcon className="w-3 h-3 text-[#ff00ff]" />
-                      </div>
-                    )}
-                    <span className="text-[10px] font-bold text-[#ff00ff] tracking-widest uppercase">
-                      {user.firstName || user.email.split("@")[0]}
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => logout()}
-                    className="group p-2 hover:bg-red-500/10 rounded-lg transition-colors"
-                    title="Sign Out"
-                  >
-                    <LogOut className="w-4 h-4 text-gray-500 group-hover:text-red-500 transition-colors" />
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={() => login()}
-                  className="flex items-center gap-2 px-4 py-2 bg-[#ff00ff]/10 border border-[#ff00ff]/30 rounded-lg text-[#ff00ff] text-[10px] font-black tracking-[0.2em] uppercase hover:bg-[#ff00ff] hover:text-black transition-all"
-                >
-                  <LogIn className="w-3 h-3" />
-                  Identify
-                </button>
-              )}
-            </div>
+          <div className="hidden md:flex items-center gap-6 text-xs text-gray-500 font-mono uppercase tracking-wider">
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              SYSTEM_ONLINE
+            </span>
+            <span>v1.0.0</span>
           </div>
         </div>
       </header>
