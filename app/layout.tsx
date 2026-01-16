@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { AuthKitProvider } from "@workos-inc/authkit-nextjs/components";
 import "./globals.css";
 import { NeuralCursor } from "@/components/ui/NeuralCursor";
 import { CRTOverlay } from "@/components/ui/CRTOverlay";
@@ -49,10 +50,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jetbrainsMono.variable} antialiased bg-black`}>
-        <MatrixBackground />
-        <CRTOverlay />
-        <div className="relative z-10">{children}</div>
-        <NeuralCursor />
+        <AuthKitProvider>
+          <MatrixBackground />
+          <CRTOverlay />
+          <div className="relative z-10">{children}</div>
+          <NeuralCursor />
+        </AuthKitProvider>
       </body>
     </html>
   );

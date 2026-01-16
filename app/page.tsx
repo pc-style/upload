@@ -1,4 +1,5 @@
 import { CyberUploadZone } from "@/components/CyberUploadZone";
+import { AuthButton } from "@/components/AuthButton";
 import { Upload, Zap, Shield, Clock } from "lucide-react";
 
 export default function Home() {
@@ -21,12 +22,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-6 text-xs text-gray-500 font-mono uppercase tracking-wider">
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              SYSTEM_ONLINE
-            </span>
-            <span>v1.0.0</span>
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-6 text-xs text-gray-500 font-mono uppercase tracking-wider">
+              <span className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                SYSTEM_ONLINE
+              </span>
+            </div>
+            <AuthButton />
           </div>
         </div>
       </header>
