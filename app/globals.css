@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@import "@pcstyle/ui/tokens.css";
-@import "@pcstyle/ui/tailwind.css";
-@import "@pcstyle/ui/cyber.css";
 
 /* Upload Dropzone Styling */
 .ut-button[data-state="ready"] {
