@@ -1,4 +1,4 @@
-import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
+import { createAuthMiddleware } from '@pcstyle/auth/middleware';
 
 /**
  * WorkOS AuthKit middleware for upload.pcstyle.dev
@@ -6,11 +6,8 @@ import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
  *
  * Cross-subdomain cookies are configured via WORKOS_COOKIE_DOMAIN env var
  */
-export default authkitMiddleware({
-    middlewareAuth: {
-        enabled: true,
-        unauthenticatedPaths: ['/', '/api/health', '/api/uploadthing'],
-    },
+export default createAuthMiddleware({
+    publicPaths: ['/', '/api/health', '/api/uploadthing'],
 });
 
 export const config = {

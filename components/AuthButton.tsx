@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@workos-inc/authkit-nextjs/components";
+import { useAuth } from "@pcstyle/auth";
 import { LogIn, LogOut, User } from "lucide-react";
 
 /**
@@ -8,15 +8,15 @@ import { LogIn, LogOut, User } from "lucide-react";
  * Redirects to auth.pcstyle.dev for authentication
  */
 export function AuthButton() {
-    const { user, loading } = useAuth();
+    const { user, isLoading, isAuthenticated } = useAuth();
 
-    if (loading) {
+    if (isLoading) {
         return (
             <div className="w-8 h-8 rounded-full bg-[#ff00ff]/20 animate-pulse" />
         );
     }
 
-    if (!user) {
+    if (!isAuthenticated) {
         return (
             <div className="flex items-center gap-2">
                 <a
@@ -34,7 +34,7 @@ export function AuthButton() {
         <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 text-xs text-gray-400 font-mono">
                 <User className="w-4 h-4 text-[#ff00ff]" />
-                <span className="hidden sm:inline">{user.email}</span>
+                <span className="hidden sm:inline">{user?.email}</span>
             </div>
             <a
                 href="https://auth.pcstyle.dev/signout"
