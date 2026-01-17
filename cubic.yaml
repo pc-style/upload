@@ -1,28 +1,33 @@
+# yaml-language-server: $schema=https://cubic.dev/schema/cubic-repository-config.schema.json
+
 version: 1
+
 reviews:
   enabled: true
   sensitivity: high
   incremental_commits: true
   check_drafts: false
-  architecture_diagrams: true
-  show_ai_feedback_buttons: true
+  architecture_diagrams: false
   resolve_threads_when_addressed: true
-  custom_instructions: "The Uploader service must prioritize file integrity, progress feedback, and seamless Uploadthing integration."
+  custom_instructions: |
+    Micro-service focus: High performance, lightweight footprints, and Edge compatibility.
+
   ignore:
     files:
       - "**/node_modules/**"
       - "**/dist/**"
       - "**/*.lock*"
-      - "**/_generated/**"
+
   custom_rules:
-    - name: "UX: Progress Feedback"
-      description: "Ensure file upload progress is visually clear and utilizes cyberpunk-style progress bars from @pcstyle/ui."
-    - name: "Security: File Validation"
-      description: "Flag any missing client-side or server-side file type/size validations."
-    - name: "Performance: Image Optimization"
-      description: "Ensure uploaded images have proper compression or resize triggers if applicable."
+    - name: "EDGE_COMPATIBILITY"
+      description: "Flag any Node.js APIs inappropriate for Vercel Edge Runtime. Prioritize performance and minimal bundle size."
+    - name: "BRAND_AESTHETICS"
+      description: "Any UI components must follow the Cybernetic Minimalist protocol: Black/Pink high-contrast design."
+
 pr_descriptions:
   generate: true
-  instructions: "Focus on upload efficiency and user feedback improvements."
+  instructions: |
+    Focus on performance optimization and routing updates.
+
 issues:
   fix_with_cubic_buttons: true
