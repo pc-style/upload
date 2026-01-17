@@ -1,16 +1,28 @@
-
 version: 1
-
 reviews:
   enabled: true
-  sensitivity: medium
-  custom_instructions: |
-    Centralized micro-services (Short, Uploader, Paste, QR).
-    Maintain consistent PCSTYLE branding and lean code architecture.
-    Technology: Next.js + Convex.
-
+  sensitivity: high
+  incremental_commits: true
+  check_drafts: false
+  architecture_diagrams: true
+  show_ai_feedback_buttons: true
+  resolve_threads_when_addressed: true
+  custom_instructions: "The Uploader service must prioritize file integrity, progress feedback, and seamless Uploadthing integration."
   ignore:
     files:
-      - node_modules/**
-      - .next/**
-      - .vercel/**
+      - "**/node_modules/**"
+      - "**/dist/**"
+      - "**/*.lock*"
+      - "**/_generated/**"
+  custom_rules:
+    - name: "UX: Progress Feedback"
+      description: "Ensure file upload progress is visually clear and utilizes cyberpunk-style progress bars from @pcstyle/ui."
+    - name: "Security: File Validation"
+      description: "Flag any missing client-side or server-side file type/size validations."
+    - name: "Performance: Image Optimization"
+      description: "Ensure uploaded images have proper compression or resize triggers if applicable."
+pr_descriptions:
+  generate: true
+  instructions: "Focus on upload efficiency and user feedback improvements."
+issues:
+  fix_with_cubic_buttons: true
